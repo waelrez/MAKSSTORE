@@ -1,0 +1,427 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAKS CITY | Official Market</title>
+<style>
+:root {
+  --bg:#090a0d;
+  --panel:#121419;
+  --panel2:#191c23;
+  --red:#e32636;
+  --gold:#e8b94f;
+  --text:#f5f5f5;
+  --muted:#9296a1;
+  --border:#292d36;
+}
+*{box-sizing:border-box}
+body{
+ margin:0;background:var(--bg);color:var(--text);
+ font-family:Arial,sans-serif;
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+header{
+ background:#0d0f14;border-bottom:1px solid var(--border);
+ position:sticky;top:0;z-index:10;
+}
+.nav{
+ max-width:1250px;margin:auto;padding:17px 22px;
+ display:flex;justify-content:space-between;align-items:center;
+ gap:15px;flex-wrap:wrap;
+}
+.logo{font-size:23px;font-weight:900;letter-spacing:1px}
+.logo span{color:var(--red)}
+.navlinks{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.navlinks button{
+ background:none;border:0;color:#ddd;font-weight:bold;
+}
+.btn{
+ background:var(--red);color:white;border:0;
+ border-radius:7px;padding:12px 17px;font-weight:bold;
+}
+.btn:hover{filter:brightness(1.2)}
+.btn.secondary{background:var(--panel2);border:1px solid var(--border)}
+.btn.gold{background:var(--gold);color:#17120a}
+.hero{
+ max-width:1250px;margin:35px auto;padding:60px 35px;
+ background:linear-gradient(110deg,#211015,#101218 65%,#271c12);
+ border:1px solid #44252b;border-radius:16px;
+ position:relative;overflow:hidden;
+}
+.hero small{color:var(--gold);letter-spacing:4px;font-weight:bold}
+.hero h1{font-size:clamp(35px,7vw,68px);margin:18px 0}
+.hero h1 span{color:var(--red)}
+.hero p{color:#b8bac2;max-width:580px;line-height:1.8}
+.hero .btn{margin-top:15px}
+.stats{
+ max-width:1250px;margin:20px auto;
+ display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:0 15px;
+}
+.stat,.card,.box{
+ background:var(--panel);border:1px solid var(--border);
+ border-radius:11px;padding:19px;
+}
+.stat strong{display:block;font-size:25px;margin-bottom:5px}
+.stat small,.muted{color:var(--muted)}
+main{max-width:1250px;margin:40px auto;padding:0 18px}
+.section-head{
+ display:flex;justify-content:space-between;
+ align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:22px;
+}
+h2{font-size:26px;margin:0}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.filters button{
+ background:var(--panel);color:#ccc;border:1px solid var(--border);
+ padding:10px 14px;border-radius:7px;
+}
+.filters button.active{background:var(--red);color:white;border-color:var(--red)}
+.grid{
+ display:grid;grid-template-columns:repeat(3,1fr);gap:17px;
+}
+.product{
+ background:var(--panel);border:1px solid var(--border);
+ border-radius:12px;overflow:hidden;transition:.2s;
+}
+.product:hover{transform:translateY(-4px);border-color:#87313a}
+.product-art{
+ height:145px;display:grid;place-items:center;
+ background:linear-gradient(135deg,#231318,#17191f);
+ font-size:55px;
+}
+.product-info{padding:17px}
+.product-info h3{margin:0 0 9px}
+.product-info p{font-size:13px;color:var(--muted);min-height:35px;line-height:1.5}
+.price{color:var(--gold);font-weight:900;font-size:19px;margin:13px 0}
+.tag{
+ display:inline-block;font-size:10px;letter-spacing:1px;
+ color:var(--gold);border:1px solid #66502a;
+ padding:5px 8px;border-radius:5px;
+}
+.product-info button{width:100%}
+.two{
+ display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:35px;
+}
+input,select,textarea{
+ width:100%;padding:12px;background:#0c0e12;
+ border:1px solid var(--border);color:white;
+ border-radius:7px;margin:7px 0 14px;
+}
+label{font-size:13px;color:#c7c9d0;font-weight:bold}
+textarea{min-height:85px;resize:vertical}
+.hidden{display:none!important}
+.row{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.item{
+ border-bottom:1px solid var(--border);padding:13px 0;
+ display:flex;justify-content:space-between;gap:10px;
+}
+footer{
+ border-top:1px solid var(--border);padding:35px 20px;
+ text-align:center;color:var(--muted);margin-top:60px;
+}
+.notice{
+ background:#241c0e;border:1px solid #66502a;
+ color:#f1d28c;padding:12px;border-radius:7px;
+ font-size:13px;line-height:1.6;margin:12px 0;
+}
+.status{
+ display:inline-block;padding:5px 8px;border-radius:5px;
+ background:#332914;color:var(--gold);font-size:11px;
+}
+.admin-order{
+ border:1px solid var(--border);border-radius:9px;
+ padding:15px;margin:12px 0;background:#101218;
+}
+@media(max-width:800px){
+ .grid{grid-template-columns:repeat(2,1fr)}
+ .hero{margin:18px 12px;padding:35px 22px}
+}
+@media(max-width:520px){
+ .grid{grid-template-columns:1fr}
+ .stats{grid-template-columns:1fr}
+ .two{grid-template-columns:1fr}
+ .nav{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="nav">
+  <div class="logo">MAKS <span>CITY</span></div>
+  <div class="navlinks">
+   <button onclick="go('shop')">STORE</button>
+   <button onclick="go('orders')">MY ORDERS</button>
+   <button onclick="go('cart')">CART (<span id="cartCount">0</span>)</button>
+   <button class="btn" onclick="go('checkout')">CHECKOUT</button>
+  </div>
+ </div>
+</header>
+
+<section class="hero">
+ <small>OFFICIAL MAKS CITY MARKET</small>
+ <h1>YOUR CITY.<br><span>YOUR STATUS.</span></h1>
+ <p>
+  Welcome to the official MAKS CITY marketplace.
+  Discover exclusive Discord roles, premium GOLD,
+  vehicles, properties and special services.
+ </p>
+ <button class="btn" onclick="go('shop')">EXPLORE MARKET →</button>
+</section>
+
+<div class="stats">
+ <div class="stat"><strong>24/7</strong><small>ONLINE MARKET</small></div>
+ <div class="stat"><strong>PREMIUM</strong><small>EXCLUSIVE PRODUCTS</small></div>
+ <div class="stat"><strong>MANUAL</strong><small>PAYMENT VERIFICATION</small></div>
+</div>
+
+<main>
+<section id="shop">
+ <div class="section-head">
+  <h2>MARKETPLACE</h2>
+  <span class="tag">OFFICIAL STORE</span>
+ </div>
+ <div class="filters" id="filters"></div>
+ <div class="grid" id="products"></div>
+</section>
+
+<section id="cart" class="hidden">
+ <div class="section-head"><h2>YOUR CART</h2></div>
+ <div class="box">
+  <div id="cartItems"></div>
+  <div class="row"><strong>TOTAL</strong><h2 id="cartTotal">0</h2></div>
+  <button class="btn" onclick="go('checkout')">CONTINUE TO CHECKOUT</button>
+ </div>
+</section>
+
+<section id="checkout" class="hidden">
+ <h2>CHECKOUT</h2>
+ <div class="two">
+  <div class="box">
+   <h3>ORDER INFORMATION</h3>
+   <form id="orderForm">
+    <label>Roblox Username / Player ID</label>
+    <input id="username" required placeholder="Your username">
+    <label>Discord Username</label>
+    <input id="discord" required placeholder="username">
+    <label>Payment Method</label>
+    <select id="payment" required>
+     <option value="">Choose payment</option>
+     <option value="Robux">Robux</option>
+     <option value="Discord Credits">Discord Credits</option>
+    </select>
+    <label>Payment Reference / Proof</label>
+    <textarea id="proof" required placeholder="Transaction ID or proof details"></textarea>
+    <div class="notice">
+     Payment is manually verified by MAKS CITY staff.
+     Do not send your account password or private login information.
+    </div>
+    <button class="btn" type="submit">SUBMIT ORDER</button>
+   </form>
+  </div>
+  <div class="box">
+   <h3>ORDER SUMMARY</h3>
+   <div id="checkoutItems"></div>
+   <div class="row"><strong>TOTAL</strong><h2 id="checkoutTotal">0</h2></div>
+  </div>
+ </div>
+</section>
+
+<section id="orders" class="hidden">
+ <h2>MY ORDERS</h2>
+ <p class="muted">Orders saved in this browser.</p>
+ <div id="myOrders"></div>
+</section>
+
+<section id="admin" class="hidden">
+ <h2>ADMIN CONTROL CENTER</h2>
+ <div class="notice">Local demonstration panel. It is not a secure online administration system.</div>
+ <div class="stats">
+  <div class="stat"><strong id="orderCount">0</strong><small>TOTAL ORDERS</small></div>
+  <div class="stat"><strong id="pendingCount">0</strong><small>PENDING</small></div>
+  <div class="stat"><strong id="approvedCount">0</strong><small>APPROVED</small></div>
+ </div>
+ <div id="adminOrders"></div>
+</section>
+</main>
+
+<footer>
+ <div class="logo">MAKS <span>CITY</span></div>
+ <p>OFFICIAL ROLEPLAY MARKETPLACE</p>
+ <p>© 2026 MAKS CITY. All rights reserved.</p>
+ <button class="btn secondary" onclick="adminLogin()">STAFF ACCESS</button>
+</footer>
+
+<script>
+"use strict";
+
+const KEY="MAKS_CITY_MARKET_V1";
+
+const products=[
+ {id:1,name:"VIP ROLE",cat:"roles",price:500,icon:"👑",desc:"Exclusive VIP Discord role and benefits."},
+ {id:2,name:"PREMIUM ROLE",cat:"roles",price:1000,icon:"💎",desc:"Premium member status."},
+ {id:3,name:"ELITE ROLE",cat:"roles",price:2000,icon:"🏆",desc:"Elite exclusive membership."},
+ {id:4,name:"100 GOLD",cat:"gold",price:100,icon:"🪙",desc:"Premium GOLD pack."},
+ {id:5,name:"500 GOLD",cat:"gold",price:450,icon:"💰",desc:"Popular GOLD package."},
+ {id:6,name:"1000 GOLD",cat:"gold",price:800,icon:"🏅",desc:"Large premium GOLD package."},
+ {id:7,name:"VIP VEHICLE",cat:"vehicles",price:1500,icon:"🏎️",desc:"Exclusive roleplay vehicle."},
+ {id:8,name:"LUXURY CAR",cat:"vehicles",price:3000,icon:"🚘",desc:"Luxury vehicle package."},
+ {id:9,name:"PRIVATE HOUSE",cat:"properties",price:2500,icon:"🏠",desc:"Private property package."},
+ {id:10,name:"MANSION",cat:"properties",price:5000,icon:"🏰",desc:"Luxury mansion package."},
+ {id:11,name:"NAME CHANGE",cat:"services",price:200,icon:"✏️",desc:"Change your character name."},
+ {id:12,name:"CUSTOM PLATE",cat:"services",price:350,icon:"🔖",desc:"Personalized vehicle plate."}
+];
+
+let cart=[];
+let category="all";
+
+function load(){
+ try{return JSON.parse(localStorage.getItem(KEY))||{orders:[]}}
+ catch(e){return {orders:[]}}
+}
+function save(data){
+ localStorage.setItem(KEY,JSON.stringify(data));
+}
+function go(id){
+ document.querySelectorAll("main section").forEach(s=>s.classList.add("hidden"));
+ document.getElementById(id).classList.remove("hidden");
+ if(id==="cart")renderCart();
+ if(id==="checkout")renderCheckout();
+ if(id==="orders")renderMyOrders();
+ if(id==="admin")renderAdmin();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function money(n){return n.toLocaleString()+" Credits";}
+function renderFilters(){
+ const cats=[
+ ["all","ALL"],["roles","DISCORD ROLES"],
+ ["gold","GOLD"],["vehicles","VEHICLES"],
+ ["properties","PROPERTIES"],["services","SERVICES"]
+ ];
+ document.getElementById("filters").innerHTML=cats.map(c=>
+ `<button class="${category===c[0]?'active':''}" onclick="setCategory('${c[0]}')">${c[1]}</button>`
+ ).join("");
+}
+function setCategory(c){category=c;renderFilters();renderProducts()}
+function renderProducts(){
+ let list=products.filter(p=>category==="all"||p.cat===category);
+ document.getElementById("products").innerHTML=list.map(p=>`
+ <div class="product">
+  <div class="product-art">${p.icon}</div>
+  <div class="product-info">
+   <span class="tag">${p.cat.toUpperCase()}</span>
+   <h3>${p.name}</h3>
+   <p>${p.desc}</p>
+   <div class="price">${money(p.price)}</div>
+   <button class="btn" onclick="addCart(${p.id})">ADD TO CART +</button>
+  </div>
+ </div>`).join("");
+}
+function addCart(id){
+ let p=products.find(x=>x.id===id);
+ let found=cart.find(x=>x.id===id);
+ if(found)found.qty++;
+ else cart.push({...p,qty:1});
+ updateCount();
+ alert(p.name+" added to cart!");
+}
+function updateCount(){
+ document.getElementById("cartCount").textContent=cart.reduce((a,b)=>a+b.qty,0);
+}
+function total(){return cart.reduce((a,b)=>a+b.price*b.qty,0)}
+function renderCart(){
+ document.getElementById("cartItems").innerHTML=cart.length?cart.map(p=>`
+ <div class="item">
+ <div>${p.icon} <b>${p.name}</b><br><small>${p.qty} × ${money(p.price)}</small></div>
+ <button class="btn secondary" onclick="removeCart(${p.id})">REMOVE</button>
+ </div>`).join(""):"Your cart is empty.";
+ document.getElementById("cartTotal").textContent=money(total());
+}
+function removeCart(id){cart=cart.filter(p=>p.id!==id);updateCount();renderCart()}
+function renderCheckout(){
+ document.getElementById("checkoutItems").innerHTML=cart.map(p=>
+ `<div class="item">${p.name} × ${p.qty}<b>${money(p.price*p.qty)}</b></div>`
+ ).join("")||"No products selected.";
+ document.getElementById("checkoutTotal").textContent=money(total());
+}
+document.getElementById("orderForm").addEventListener("submit",function(e){
+ e.preventDefault();
+ if(!cart.length){alert("Your cart is empty!");return}
+ const data=load();
+ const order={
+  id:"MAKS-"+Date.now().toString().slice(-9),
+  username:document.getElementById("username").value.trim(),
+  discord:document.getElementById("discord").value.trim(),
+  payment:document.getElementById("payment").value,
+  proof:document.getElementById("proof").value.trim(),
+  items:cart.map(p=>({name:p.name,qty:p.qty,price:p.price})),
+  total:total(),
+  status:"Pending",
+  date:new Date().toLocaleString()
+ };
+ data.orders.unshift(order);
+ save(data);
+ alert("Order submitted! ID: "+order.id);
+ cart=[];
+ updateCount();
+ this.reset();
+ go("orders");
+});
+function renderMyOrders(){
+ const data=load();
+ document.getElementById("myOrders").innerHTML=data.orders.length?
+ data.orders.map(o=>`
+ <div class="admin-order">
+ <div class="row"><b>${o.id}</b><span class="status">${o.status}</span></div>
+ <p>${o.date}</p>
+ <p>${o.items.map(i=>i.name+" × "+i.qty).join(", ")}</p>
+ <b>${money(o.total)}</b>
+ </div>`).join(""):"No orders found in this browser.";
+}
+function adminLogin(){
+ const pass=prompt("Staff password:");
+ if(pass==="MAKS2026"){
+ go("admin");
+ }else if(pass!==null){alert("Access denied")}
+}
+function renderAdmin(){
+ const data=load(),orders=data.orders;
+ document.getElementById("orderCount").textContent=orders.length;
+ document.getElementById("pendingCount").textContent=orders.filter(o=>o.status==="Pending").length;
+ document.getElementById("approvedCount").textContent=orders.filter(o=>o.status==="Approved").length;
+ document.getElementById("adminOrders").innerHTML=orders.map(o=>`
+ <div class="admin-order">
+ <div class="row"><b>${o.id}</b><span class="status">${o.status}</span></div>
+ <p>Player: ${escapeHTML(o.username)}</p>
+ <p>Discord: ${escapeHTML(o.discord)}</p>
+ <p>Payment: ${escapeHTML(o.payment)}</p>
+ <p>Proof: ${escapeHTML(o.proof)}</p>
+ <p>Items: ${o.items.map(i=>escapeHTML(i.name)+" × "+i.qty).join(", ")}</p>
+ <b>${money(o.total)}</b>
+ <p>${o.date}</p>
+ <select onchange="changeStatus('${o.id}',this.value)">
+ <option value="Pending" ${o.status==="Pending"?"selected":""}>Pending</option>
+ <option value="Approved" ${o.status==="Approved"?"selected":""}>Approved</option>
+ <option value="Delivered" ${o.status==="Delivered"?"selected":""}>Delivered</option>
+ <option value="Rejected" ${o.status==="Rejected"?"selected":""}>Rejected</option>
+ </select>
+ </div>`).join("")||"No orders yet.";
+}
+function changeStatus(id,status){
+ const data=load();
+ const o=data.orders.find(x=>x.id===id);
+ if(o){o.status=status;save(data);renderAdmin()}
+}
+function escapeHTML(s){
+ return String(s).replace(/[&<>"']/g,c=>({
+ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ })[c]);
+}
+renderFilters();
+renderProducts();
+updateCount();
+</script>
+</body>
+</html>
